@@ -10,8 +10,6 @@ const Intern = require("./lib/Intern");
 const employeeArr = [];
 let employee = {};
 
-
-// CREATE THE PROMPTS FOR MANAGER HERE. USE INQUIRER
 function managerPrompt() {
 inquirer
   .prompt([
