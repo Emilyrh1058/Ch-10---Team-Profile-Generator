@@ -19,7 +19,7 @@ inquirer
     {
       type: "input",
       name: "id",
-      message: "Enter ID number:",
+      message: "Enter manager ID number:",
     },
     {
       type: "input",
@@ -31,27 +31,27 @@ inquirer
       name: "officeNumber",
       message: "What is their office number?",
     },
-    {             
-      type: "confirm",
-      name: "addEmployee",
-      message: "Would you like to add an employee?",
-      validate: (addEmployee) => {
-        if (addEmployee) {return true;} 
-        else {return ""}
-      },
-    },
-    {
-      type: "input",
-      name: "employee",
-      message: "Please enter the name of employee you'd like to add:",
-      when: ({ addEmployee }) => {
-          if (addEmployee) {return true;} 
-          else {return false;}
-      }
-    },
+    // {             
+    //   type: "confirm",
+    //   name: "addEmployee",
+    //   message: "Would you like to add an employee?",
+    //   validate: (addEmployee) => {
+    //     if (addEmployee) {employeePrompt()} 
+    //     else return
+    //   },
+    // },
+    // {
+    //   type: "input",
+    //   name: "employee",
+    //   message: "Please enter the name of employee you'd like to add:",
+    //   when: ({ addEmployee }) => {
+    //       if (addEmployee) {return true;} 
+    //       else {return false;}
+    //   }
+    // },
   ])
   .then(function (response) {
-    console.log("Manager section is complete.");
+    // console.log("Manager section is complete.");
     employee = response;
     const manager = new Manager (
       employee.name,
@@ -60,22 +60,45 @@ inquirer
       employee.officeNumber,
     );
     employeeArr.push(manager);  //PUSHES EMPLOYEE INFO TO THE MANAGER FUNCTION
-    employeePrompt(); //CALLS THE EMPLOYEE PROMPT IF "Y" WAS SELECTED
+    // employeePrompt(); //CALLS THE EMPLOYEE PROMPT IF "Y" WAS SELECTED
+nextStep();
   });
 };
+
+function nextStep() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "option",
+        message: "What would you like to do next?",
+        choices: ["Add another employee", "Quit"],
+      },
+    ])
+    .then(function (response) {
+      if (response.option === "Add another employee") {
+        employeePrompt();
+      } else {
+        console.log(employeeArr);
+        return;
+      }
+    })
+  
+}
 
 function employeePrompt() {
   inquirer
     .prompt([
       {
         type: "input",
-        name: "name",
-        message: "Enter employee's name:",
+        name: "employee",
+        message: "Please enter the name of employee you'd like to add:",
       },
+  
       {
         type: "input",
         name: "id",
-        message: "Enter ID number:",
+        message: "Enter employee ID number:",
       },
       {
         type: "input",
@@ -91,7 +114,6 @@ function employeePrompt() {
   ])
 
   .then(function (response) {
-    employee = response;
     if (response.position === "Engineer") {
       engineerPrompt();
     } else {
@@ -118,8 +140,8 @@ function engineerPrompt() {
       employee.github
     );
     employeeArr.push(engineer); //PUSHES EMPLOYEE INFO TO ENGINEER
-    employeePrompt();
     console.log("Engineer information collected successfully!")
+    nextStep();
   });
 };
 
@@ -141,7 +163,8 @@ function internPrompt() {
       employee.school
     );
     employeeArr.push(intern) //PUSHES EMPLOYEE INFO TO INTERN
-    employeePrompt();
+    console.log("Intern information collected successfully!")
+    nextStep();
   });
 };
 
