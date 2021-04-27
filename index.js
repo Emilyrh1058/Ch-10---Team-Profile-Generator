@@ -1,12 +1,10 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const path = require("path");
-// REQUIRE PROMPT SECTIONS
 const Manager = require("./lib/Manager");
 const Employee = require("./lib/Employee")
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-// DEFINE ARRAY AND EMPLOYEE HERE
 const employeeArr = [];
 let employee = {};
 
@@ -53,8 +51,7 @@ inquirer
     },
   ])
   .then(function (response) {
-    console.log("Manager section is complete."
-    );
+    console.log("Manager section is complete.");
     employee = response;
     const manager = new Manager (
       employee.name,
@@ -121,8 +118,8 @@ function engineerPrompt() {
       employee.github
     );
     employeeArr.push(engineer); //PUSHES EMPLOYEE INFO TO ENGINEER
-    // employeePrompt();
-    // console.log("Engineer information collected successfully!")
+    employeePrompt();
+    console.log("Engineer information collected successfully!")
   });
 };
 
