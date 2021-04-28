@@ -1,5 +1,4 @@
 const Employee = require("../lib/employee");
-const fs = require('fs');
 
 test("Can instantiate Employee instance", () => {
   const emp = new Employee();
