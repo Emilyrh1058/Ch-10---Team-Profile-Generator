@@ -1,11 +1,11 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const path = require("path");
-const Manager = require("./lib/Manager");
-const Employee = require("./lib/Employee")
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const employeeArr = [];
+const Manager = require("./lib/manager");
+const Employee = require("./lib/employee")
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
+let employeeArr = [];
 let employee = {};
 
 function managerPrompt() {
@@ -31,27 +31,10 @@ inquirer
       name: "officeNumber",
       message: "What is their office number?",
     },
-    // {             
-    //   type: "confirm",
-    //   name: "addEmployee",
-    //   message: "Would you like to add an employee?",
-    //   validate: (addEmployee) => {
-    //     if (addEmployee) {employeePrompt()} 
-    //     else return
-    //   },
-    // },
-    // {
-    //   type: "input",
-    //   name: "employee",
-    //   message: "Please enter the name of employee you'd like to add:",
-    //   when: ({ addEmployee }) => {
-    //       if (addEmployee) {return true;} 
-    //       else {return false;}
-    //   }
-    // },
   ])
+
   .then(function (response) {
-    // console.log("Manager section is complete.");
+    console.log("Manager section is complete.");
     employee = response;
     const manager = new Manager (
       employee.name,
@@ -60,8 +43,8 @@ inquirer
       employee.officeNumber,
     );
     employeeArr.push(manager);  //PUSHES EMPLOYEE INFO TO THE MANAGER FUNCTION
-    // employeePrompt(); //CALLS THE EMPLOYEE PROMPT IF "Y" WAS SELECTED
-nextStep();
+
+    nextStep();
   });
 };
 
@@ -75,6 +58,7 @@ function nextStep() {
         choices: ["Add another employee", "Quit"],
       },
     ])
+
     .then(function (response) {
       if (response.option === "Add another employee") {
         employeePrompt();
@@ -83,7 +67,6 @@ function nextStep() {
         return;
       }
     })
-  
 }
 
 function employeePrompt() {
@@ -94,7 +77,6 @@ function employeePrompt() {
         name: "employee",
         message: "Please enter the name of employee you'd like to add:",
       },
-  
       {
         type: "input",
         name: "id",
@@ -168,7 +150,11 @@ function internPrompt() {
   });
 };
 
-// RENDER THE HTML PAGE. USE FUNCTION, FS, EMPLOYEE ARR
-// RENDER EMAIL AND GITHUB LINKS
+
+
+
 
 managerPrompt();
+
+// RENDER THE HTML PAGE. USE FUNCTION, FS, EMPLOYEE ARR
+// RENDER EMAIL AND GITHUB LINKS
