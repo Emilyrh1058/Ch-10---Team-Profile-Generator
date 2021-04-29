@@ -1,7 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generatePage = require('./src/page-template');
-const pageHTML = generatePage();
 const Manager = require("./lib/manager");
 const Employee = require("./lib/employee")
 const Engineer = require("./lib/engineer");
@@ -68,7 +67,7 @@ function nextStep() {
         employeePrompt();
       } else {
         console.log(employeeArr);
-        return;
+        return generatePage(employeeArr);
       }
     })
 }
@@ -153,13 +152,6 @@ function internPrompt() {
     nextStep();
   });
 };
-
-
-fs.writeFile('index.html', generatePage(), err => {
-  if (err) throw err;
-
-  console.log('Portfolio complete! Check out index.html to see the output!');
-});
 
 
 managerPrompt();

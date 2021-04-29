@@ -59,7 +59,7 @@ const generateCards = groupInfo => {
 
   return [manager.join(""), engineer.join(""), intern.join("")]
 
-};
+}
 
 module.exports = pageData => {
   return `
