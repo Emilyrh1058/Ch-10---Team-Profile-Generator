@@ -1,45 +1,59 @@
 const generateCards = groupInfo => {
-  
-  const manager = groupInfo.manager.map(function(include) {
-    let manSection = `
+  console.log("generateCards", groupInfo)
+
+  for(let i=0; i<groupInfo.length; i++){
+    console.log(groupInfo[i])
+      if (groupInfo[i].manager === manager);
+        {generateManager(groupInfo[i])};
+
+      if (groupInfo[i].engineer === engineer);
+        {generateEngineer(groupInfo[i])};
+
+      if (groupInfo[i].intern === intern);
+        {generateIntern(groupInfo[i])};
+  }
+
+
+  // const manager = groupInfo.manager.map(function(include) {
+  //   let manSection = `
+  function generateManager(manager){
+    return `
       <div class="col">
       <div class="card h-100">
         <div class="card-body">
-          <h4 class="card-title">${include.name}</h4>
+          <h4 class="card-title">${manager.name}</h4>
           <h5 class="card-text">Manager</h5>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">ID: ${include.id}</li>
-          <li class="list-group-item">Email: <a href="mailto:${include.email}" class="card-link">${include.email}</a></li>
-          <li class="list-group-item">Office Number: ${include.officeNumber}</li>
+          <li class="list-group-item">ID: ${manager.id}</li>
+          <li class="list-group-item">Email: <a href="mailto:${manager.email}" class="card-link">${include.email}</a></li>
+          <li class="list-group-item">Office Number: ${manager.officeNumber}</li>
         </ul>
       </div>
     </div>
     `
-    return manSection;
-  });
+  }
 
-  const engineer = groupInfo.engineer.map(function(include) {
-    let engSection = `
+  function generateEngineer(engineer){
+    return `  
       <div class="col">
       <div class="card h-100">
         <div class="card-body">
-          <h4 class="card-title">${include.name}</h4>
+          <h4 class="card-title">${engineer.name}</h4>
           <h5 class="card-text">Engineer</h5>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">ID: ${include.id}</li>
-          <li class="list-group-item">Email: <a href="mailto:${include.email}" class="card-link">${include.email}</a></li>
-          <li class="list-group-item">GitHub: <a href="https://github.com/${include.gitHub}" target="_blank" class="card-link">${include.gitHub}</a></li>
+          <li class="list-group-item">ID: ${engineer.id}</li>
+          <li class="list-group-item">Email: <a href="mailto:${engineer.email}" class="card-link">${include.email}</a></li>
+          <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.gitHub}" target="_blank" class="card-link">${include.gitHub}</a></li>
         </ul>
       </div>
     </div>
     `
-    return engSection;
-  });
+  }
 
-  const intern = groupInfo.intern.map(function(include) {
-    let intSection = `
+  function generateIntern(intern){
+    return `
       <div class="col">
       <div class="card h-100">
         <div class="card-body">
@@ -54,12 +68,9 @@ const generateCards = groupInfo => {
       </div>
     </div>
     `
-    return intSection;
-  });
+  }
 
   return [manager.join(""), engineer.join(""), intern.join("")]
-
-}
 
 module.exports = pageData => {
   return `
@@ -84,4 +95,4 @@ module.exports = pageData => {
       </body>
     </html>
   `
-}
+};
