@@ -1,17 +1,17 @@
 const generateCards = groupInfo => {
   console.log("generateCards", groupInfo)
 
-  for(let i=0; i<groupInfo.length; i++){
+  for (let i=0; i<groupInfo.length; i++){
     console.log(groupInfo[i])
       if (groupInfo[i].manager === manager);
-        {generateManager(groupInfo[i])};
+        return generateManager(groupInfo[i]);
 
       if (groupInfo[i].engineer === engineer);
-        {generateEngineer(groupInfo[i])};
+        return generateEngineer(groupInfo[i]);
 
       if (groupInfo[i].intern === intern);
-        {generateIntern(groupInfo[i])};
-  }
+        return generateIntern(groupInfo[i]);
+  };
 
 
   // const manager = groupInfo.manager.map(function(include) {
@@ -57,13 +57,13 @@ const generateCards = groupInfo => {
       <div class="col">
       <div class="card h-100">
         <div class="card-body">
-          <h4 class="card-title">${include.name}</h4>
+          <h4 class="card-title">${intern.name}</h4>
           <h5 class="card-text">Intern</h5>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">ID: ${include.id}</li>
-          <li class="list-group-item">Email: <a href="mailto:${include.email}" class="card-link">${include.email}</a></li>
-          <li class="list-group-item">School: ${include.school}</li>
+          <li class="list-group-item">ID: ${intern.id}</li>
+          <li class="list-group-item">Email: <a href="mailto:${intern.email}" class="card-link">${include.email}</a></li>
+          <li class="list-group-item">School: ${intern.school}</li>
         </ul>
       </div>
     </div>
@@ -95,4 +95,5 @@ module.exports = pageData => {
       </body>
     </html>
   `
-};
+  }
+}
