@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const path = require("path");
+const generatePage = require('./src/page-template');
+
 const Manager = require("./lib/manager");
 const Employee = require("./lib/employee")
 const Engineer = require("./lib/engineer");
@@ -8,6 +9,9 @@ const Intern = require("./lib/intern");
 let employeeArr = [];
 let employee = {};
 
+generatePage();
+
+// BEGIN EMPLOYEE INFO PROMPT
 function managerPrompt() {
 inquirer
   .prompt([
@@ -42,7 +46,7 @@ inquirer
       employee.email,
       employee.officeNumber,
     );
-    employeeArr.push(manager);  //PUSHES EMPLOYEE INFO TO THE MANAGER FUNCTION
+    employeeArr.push(manager);  
 
     nextStep();
   });
@@ -121,7 +125,7 @@ function engineerPrompt() {
       employee.email,
       employee.github
     );
-    employeeArr.push(engineer); //PUSHES EMPLOYEE INFO TO ENGINEER
+    employeeArr.push(engineer); 
     console.log("Engineer information collected successfully!")
     nextStep();
   });
@@ -144,14 +148,18 @@ function internPrompt() {
       employee.email,
       employee.school
     );
-    employeeArr.push(intern) //PUSHES EMPLOYEE INFO TO INTERN
+    employeeArr.push(intern) 
     console.log("Intern information collected successfully!")
     nextStep();
   });
 };
 
 
+fs.writeFile('index.html', generatePage(), err => {
+  if (err) throw err;
 
+  console.log('Portfolio complete! Check out index.html to see the output!');
+});
 
 
 managerPrompt();
