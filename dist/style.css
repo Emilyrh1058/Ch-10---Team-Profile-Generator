@@ -1,0 +1,28 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.head {
+  font-size: 4rem;
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+  padding: 10px;
+  color: white;
+  border-bottom: 5px solid black;
+}
+
+.row {
+  margin: 100px;
+}
+
+.card-body {
+  background: #780206;
+  background: -webkit-linear-gradient(to right, #061161, #780206);
+  background: linear-gradient(to right, #061161, #780206);
+  color: white;
+}
+
+.card {
+  border: 1px dashed black; 
+}

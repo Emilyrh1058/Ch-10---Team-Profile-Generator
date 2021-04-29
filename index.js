@@ -1,7 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generatePage = require('./src/page-template');
-
+const pageHTML = generatePage();
 const Manager = require("./lib/manager");
 const Employee = require("./lib/employee")
 const Engineer = require("./lib/engineer");
@@ -9,7 +9,7 @@ const Intern = require("./lib/intern");
 let employeeArr = [];
 let employee = {};
 
-generatePage();
+
 
 // BEGIN EMPLOYEE INFO PROMPT
 function managerPrompt() {
