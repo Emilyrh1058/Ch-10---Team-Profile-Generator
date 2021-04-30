@@ -63,15 +63,13 @@ function nextStep() {
       } else if (response.option === "Add an Intern") {
         internPrompt();
       } else {
-        console.log(employeeArr);
-        console.log (generateHtml(employeeArr));
+        fs.writeFile('index.html', generateHtml(employeeArr), err => {
+          if (err) throw err;
+          console.log('Portfolio complete! Check out index.html to see the output!');
+        // console.log(employeeArr);
+        // console.log (generateHtml(employeeArr));
+        });
       }
-    });
-
-    fs.writeFile('index.html', generateHtml(), err => {
-      if (err) throw err;
-    
-      // console.log('Portfolio complete! Check out index.html to see the output!');
     });
 }
 
