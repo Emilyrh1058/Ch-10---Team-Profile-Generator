@@ -1,12 +1,12 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateCards = require("./src/page-template");
+const generateHtml = require("./src/page-template");
 const Manager = require("./lib/manager");
 const Employee = require("./lib/employee");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 let employeeArr = [];
-let employee = {};
+// let employee = {};
 
 // BEGIN EMPLOYEE INFO PROMPT
 function managerPrompt() {
@@ -36,12 +36,11 @@ function managerPrompt() {
 
     .then(function (response) {
       console.log("Manager section is complete.");
-      employee = response;
       const manager = new Manager(
-        employee.name,
-        employee.id,
-        employee.email,
-        employee.officeNumber
+        response.name,
+        response.id,
+        response.email,
+        response.officeNumber
       );
       employeeArr.push(manager);
 
@@ -65,10 +64,13 @@ function nextStep() {
         engineerPrompt();
       } else if (response.option === "Add an Intern") {
         internPrompt();
-      } else (response.option === "Quit"); 
-      // console.log(employeeArr);
-      // return generateCards(employeeArr);
+      } else {
+        console.log(employeeArr);
+        console.log (generateHtml(employeeArr));
+      }
+
     });
+
 }
 
 // function employeePrompt() {
@@ -111,7 +113,7 @@ function engineerPrompt() {
     .prompt([
       {
         type: "input",
-        name: "employee",
+        name: "name",
         message: "Please enter the name of employee you'd like to add:",
       },
       {
@@ -131,12 +133,11 @@ function engineerPrompt() {
       },
     ])
     .then(function (response) {
-      employee.github = response.github;
       const engineer = new Engineer(
-        employee.name,
-        employee.id,
-        employee.email,
-        employee.github
+        response.name,
+        response.id,
+        response.email,
+        response.github
       );
       employeeArr.push(engineer);
       console.log("Engineer information collected successfully!");
@@ -169,12 +170,11 @@ function internPrompt() {
       },
     ])
     .then(function (response) {
-      employee.school = response.school;
       const intern = new Intern(
-        employee.name,
-        employee.id,
-        employee.email,
-        employee.school
+        response.name,
+        response.id,
+        response.email,
+        response.school
       );
       employeeArr.push(intern);
       console.log("Intern information collected successfully!");

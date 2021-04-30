@@ -1,16 +1,16 @@
 const generateCards = groupInfo => {
   console.log("generateCards", groupInfo)
-
+  let html = ""
   for (let i=0; i<groupInfo.length; i++){
     console.log(groupInfo[i])
       if ((groupInfo[i].manager === "manager"));
-        return generateManager(groupInfo[i]);
+        html += generateManager(groupInfo[i]);
         
       if ((groupInfo[i].engineer === "engineer"));
-        return generateEngineer(groupInfo[i]);
+        html += generateEngineer(groupInfo[i]);
       
       if ((groupInfo[i].intern === "intern"));
-        return generateIntern(groupInfo[i]);
+        html += generateIntern(groupInfo[i]);
   };
 
 
@@ -68,7 +68,8 @@ const generateCards = groupInfo => {
     `
   }
 
-  return [manager.join(""), engineer.join(""), intern.join("")]
+  return html
+}
 
 module.exports = pageData => {
   return `
@@ -89,11 +90,11 @@ module.exports = pageData => {
           <h1 class="head">My Team</h1>
         </header>
         <div class="row row-cols-auto row-cols-md-3 g-4">
-        ${generateCards(pageData).join("")}
+        ${generateCards(pageData)}
       </body>
     </html>
   `
-  }
 }
 
-module.exports = generateCards;
+
+// module.exports = generateCards;
