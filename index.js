@@ -1,14 +1,12 @@
-const inquirer = require("inquirer");
-const fs = require("fs");
+const inquirer = require('inquirer');
+const fs = require('fs');
 const generateHtml = require("./src/page-template");
 const Manager = require("./lib/manager");
 const Employee = require("./lib/employee");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 let employeeArr = [];
-// let employee = {};
 
-// BEGIN EMPLOYEE INFO PROMPT
 function managerPrompt() {
   inquirer
     .prompt([
@@ -70,43 +68,7 @@ function nextStep() {
       }
 
     });
-
 }
-
-// function employeePrompt() {
-//   inquirer
-//     .prompt([
-//       {
-//         type: "input",
-//         name: "employee",
-//         message: "Please enter the name of employee you'd like to add:",
-//       },
-//       {
-//         type: "input",
-//         name: "id",
-//         message: "Enter employee ID number:",
-//       },
-//       {
-//         type: "input",
-//         name: "email",
-//         message: "Enter the employee's email:",
-//       },
-//       {
-//         type: "list",
-//         name: "position",
-//         message: "What is their current position?",
-//         choices: ["Engineer", "Intern"],
-//       },
-//   ])
-
-//   .then(function (response) {
-//     if (response.position === "Engineer") {
-//       engineerPrompt();
-//     } else {
-//       internPrompt();
-//     }
-//   })
-// };
 
 function engineerPrompt() {
   inquirer
@@ -184,5 +146,8 @@ function internPrompt() {
 
 managerPrompt();
 
-// RENDER THE HTML PAGE. USE FUNCTION, FS, EMPLOYEE ARR
-// RENDER EMAIL AND GITHUB LINKS
+fs.writeFile('index.html', generateHtml(), err => {
+  if (err) throw err;
+
+  // console.log('Portfolio complete! Check out index.html to see the output!');
+});

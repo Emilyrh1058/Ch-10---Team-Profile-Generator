@@ -94,7 +94,7 @@ module.exports = pageData => {
       </body>
     </html>
   `
-}
+  }
 
 
 // module.exports = generateCards;
