@@ -66,7 +66,12 @@ function nextStep() {
         console.log(employeeArr);
         console.log (generateHtml(employeeArr));
       }
+    });
 
+    fs.writeFile('index.html', generateHtml(), err => {
+      if (err) throw err;
+    
+      // console.log('Portfolio complete! Check out index.html to see the output!');
     });
 }
 
@@ -146,8 +151,8 @@ function internPrompt() {
 
 managerPrompt();
 
-fs.writeFile('index.html', generateHtml(), err => {
-  if (err) throw err;
+// fs.writeFile('index.html', generateHtml(), err => {
+//   if (err) throw err;
 
-  // console.log('Portfolio complete! Check out index.html to see the output!');
-});
+//   // console.log('Portfolio complete! Check out index.html to see the output!');
+// });

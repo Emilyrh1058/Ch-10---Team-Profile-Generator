@@ -1,5 +1,5 @@
 const generateCards = groupInfo => {
-  console.log("generateCards", groupInfo)
+  console.log("generateCards line 2", groupInfo)
   let html = ""
   for (let i=0; i<groupInfo.length; i++){
     console.log(groupInfo[i])
