@@ -115,7 +115,7 @@ function internPrompt() {
     .prompt([
       {
         type: "input",
-        name: "employee",
+        name: "name",
         message: "Please enter the name of employee you'd like to add:",
       },
       {
@@ -148,9 +148,3 @@ function internPrompt() {
 }
 
 managerPrompt();
-
-// fs.writeFile('index.html', generateHtml(), err => {
-//   if (err) throw err;
-
-//   // console.log('Portfolio complete! Check out index.html to see the output!');
-// });
