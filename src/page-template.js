@@ -3,19 +3,17 @@ const generateCards = groupInfo => {
 
   for (let i=0; i<groupInfo.length; i++){
     console.log(groupInfo[i])
-      if (groupInfo[i].manager === manager);
+      if ((groupInfo[i].manager === "manager"));
         return generateManager(groupInfo[i]);
-
-      if (groupInfo[i].engineer === engineer);
+        
+        if ((groupInfo[i].engineer === "engineer"));
         return generateEngineer(groupInfo[i]);
-
-      if (groupInfo[i].intern === intern);
+      
+      if ((groupInfo[i].intern === "intern"));
         return generateIntern(groupInfo[i]);
   };
 
 
-  // const manager = groupInfo.manager.map(function(include) {
-  //   let manSection = `
   function generateManager(manager){
     return `
       <div class="col">
@@ -26,7 +24,7 @@ const generateCards = groupInfo => {
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">ID: ${manager.id}</li>
-          <li class="list-group-item">Email: <a href="mailto:${manager.email}" class="card-link">${include.email}</a></li>
+          <li class="list-group-item">Email: <a href="mailto:${manager.email}" class="card-link">${manager.email}</a></li>
           <li class="list-group-item">Office Number: ${manager.officeNumber}</li>
         </ul>
       </div>
@@ -44,8 +42,8 @@ const generateCards = groupInfo => {
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">ID: ${engineer.id}</li>
-          <li class="list-group-item">Email: <a href="mailto:${engineer.email}" class="card-link">${include.email}</a></li>
-          <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.gitHub}" target="_blank" class="card-link">${include.gitHub}</a></li>
+          <li class="list-group-item">Email: <a href="mailto:${engineer.email}" class="card-link">${engineer.email}</a></li>
+          <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.gitHub}" target="_blank" class="card-link">${engineer.gitHub}</a></li>
         </ul>
       </div>
     </div>
@@ -62,7 +60,7 @@ const generateCards = groupInfo => {
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">ID: ${intern.id}</li>
-          <li class="list-group-item">Email: <a href="mailto:${intern.email}" class="card-link">${include.email}</a></li>
+          <li class="list-group-item">Email: <a href="mailto:${intern.email}" class="card-link">${intern.email}</a></li>
           <li class="list-group-item">School: ${intern.school}</li>
         </ul>
       </div>
@@ -96,4 +94,6 @@ module.exports = pageData => {
     </html>
   `
   }
-}
+
+
+module.exports = generateCards;

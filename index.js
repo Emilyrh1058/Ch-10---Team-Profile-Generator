@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generatePage = require('./src/page-template');
+const generateCards = require('./src/page-template');
 const Manager = require("./lib/manager");
 const Employee = require("./lib/employee")
 const Engineer = require("./lib/engineer");
@@ -67,7 +67,7 @@ function nextStep() {
         employeePrompt();
       } else {
         console.log(employeeArr);
-        return generatePage(employeeArr);
+        return generateCards(employeeArr);
       }
     })
 }
