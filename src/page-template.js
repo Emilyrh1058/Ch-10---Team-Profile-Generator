@@ -6,7 +6,7 @@ const generateCards = groupInfo => {
       if ((groupInfo[i].manager === "manager"));
         return generateManager(groupInfo[i]);
         
-        if ((groupInfo[i].engineer === "engineer"));
+      if ((groupInfo[i].engineer === "engineer"));
         return generateEngineer(groupInfo[i]);
       
       if ((groupInfo[i].intern === "intern"));
@@ -94,6 +94,6 @@ module.exports = pageData => {
     </html>
   `
   }
-
+}
 
 module.exports = generateCards;
