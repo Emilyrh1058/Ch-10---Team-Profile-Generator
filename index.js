@@ -1,11 +1,71 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const { writeFile } = require('./utils/generate-site');
 const generateHtml = require("./src/page-template");
 const Manager = require("./lib/manager");
 const Employee = require("./lib/employee");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 let employeeArr = [];
+
+
+function userPrompt() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "option",
+        message: "What would you like to do?",
+        choices: ["Add a Manager","Add an Engineer", "Add an Intern", "Quit"],
+      },
+    ])
+
+    .then(function (response) {
+      if (response.option === "Add a Manager") {
+        managerPrompt();
+      } else if (response.option === "Add an Engineer") {
+        engineerPrompt();
+      } else if (response.option === "Add an Intern") {
+        internPrompt();
+      } else {
+        fs.writeFile('index.html', generateHtml(employeeArr), err => {
+          if (err) throw err;
+          console.log('Portfolio complete! Check out index.html to see the output!');
+        // console.log(employeeArr);
+        // console.log (generateHtml(employeeArr));
+        });
+      }
+    });
+}
+
+function nextStep() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "option",
+        message: "What would you like to do next?",
+        choices: ["Add an Engineer", "Add an Intern", "Quit"],
+      },
+    ])
+
+    .then(function (response) {
+      if (response.option === "Add a Manager") {
+        managerPrompt();
+      } else if (response.option === "Add an Engineer") {
+        engineerPrompt();
+      } else if (response.option === "Add an Intern") {
+        internPrompt();
+      } else {
+        fs.writeFile('index.html', generateHtml(employeeArr), err => {
+          if (err) throw err;
+          console.log('Portfolio complete! Check out index.html to see the output!');
+        // console.log(employeeArr);
+        // console.log (generateHtml(employeeArr));
+        });
+      }
+    });
+}
 
 function managerPrompt() {
   inquirer
@@ -46,33 +106,6 @@ function managerPrompt() {
     });
 }
 
-function nextStep() {
-  inquirer
-    .prompt([
-      {
-        type: "list",
-        name: "option",
-        message: "What would you like to do next?",
-        choices: ["Add an Engineer", "Add an Intern", "Quit"],
-      },
-    ])
-
-    .then(function (response) {
-      if (response.option === "Add an Engineer") {
-        engineerPrompt();
-      } else if (response.option === "Add an Intern") {
-        internPrompt();
-      } else {
-        fs.writeFile('index.html', generateHtml(employeeArr), err => {
-          if (err) throw err;
-          console.log('Portfolio complete! Check out index.html to see the output!');
-        // console.log(employeeArr);
-        // console.log (generateHtml(employeeArr));
-        });
-      }
-    });
-}
-
 function engineerPrompt() {
   inquirer
     .prompt([
@@ -93,8 +126,8 @@ function engineerPrompt() {
       },
       {
         type: "input",
-        name: "github",
-        message: "Enter employee's github username:",
+        name: "gitHub",
+        message: "Enter employee's GitHub username:",
       },
     ])
     .then(function (response) {
@@ -135,6 +168,7 @@ function internPrompt() {
       },
     ])
     .then(function (response) {
+      
       const intern = new Intern(
         response.name,
         response.id,
@@ -147,4 +181,4 @@ function internPrompt() {
     });
 }
 
-managerPrompt();
+userPrompt();

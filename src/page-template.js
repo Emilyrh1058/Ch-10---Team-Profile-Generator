@@ -1,17 +1,20 @@
 const generateCards = groupInfo => {
-  let html = ""
+  let html =[]
   for (let i=0; i<groupInfo.length; i++){
-    console.log(groupInfo[i])
-      if ((groupInfo[i].manager === "manager"));
-        html += generateManager(groupInfo[i]);
+    // console.log(groupInfo[i])
+      if ((groupInfo[i].manager === "Manager")) {
+        html.push(generateManager(groupInfo[i]));
+      }
         
-      if ((groupInfo[i].engineer === "engineer"));
-        html += generateEngineer(groupInfo[i]);
-      
-      if ((groupInfo[i].intern === "intern"));
-        html += generateIntern(groupInfo[i]);
+      if ((groupInfo[i].engineer === "Engineer")) {
+        html.push(generateEngineer(groupInfo[i]));
+      }
+              
+      // if (groupInfo[i].position === "Intern") {
+        if ((groupInfo[i].intern === "intern"));
+        html.push(generateIntern(groupInfo[i]));
   };
-
+  
 
   function generateManager(manager){
     return `
@@ -93,4 +96,4 @@ module.exports = pageData => {
       </body>
     </html>
   `
-  }
+}
