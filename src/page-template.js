@@ -1,18 +1,19 @@
 const generateCards = groupInfo => {
+  // console.log("groupInfo", groupInfo)
   let html =[]
   for (let i=0; i<groupInfo.length; i++){
-    // console.log(groupInfo[i])
-      if ((groupInfo[i].manager === "Manager")) {
+    console.log(groupInfo[i])
+      if ((groupInfo[i].position === "Manager")) {
         html.push(generateManager(groupInfo[i]));
       }
         
-      if ((groupInfo[i].engineer === "Engineer")) {
+      if ((groupInfo[i].position === "Engineer")) {
         html.push(generateEngineer(groupInfo[i]));
       }
               
-      // if (groupInfo[i].position === "Intern") {
-        if ((groupInfo[i].intern === "intern"));
+      if (groupInfo[i].position === "Intern") {
         html.push(generateIntern(groupInfo[i]));
+      }
   };
   
 
@@ -45,7 +46,7 @@ const generateCards = groupInfo => {
         <ul class="list-group list-group-flush">
           <li class="list-group-item">ID: ${engineer.id}</li>
           <li class="list-group-item">Email: <a href="mailto:${engineer.email}" class="card-link">${engineer.email}</a></li>
-          <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.gitHub}" target="_blank" class="card-link">${engineer.gitHub}</a></li>
+          <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.github}" target="_blank" class="card-link">${engineer.github}</a></li>
         </ul>
       </div>
     </div>

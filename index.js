@@ -126,7 +126,7 @@ function engineerPrompt() {
       },
       {
         type: "input",
-        name: "gitHub",
+        name: "github",
         message: "Enter employee's GitHub username:",
       },
     ])
